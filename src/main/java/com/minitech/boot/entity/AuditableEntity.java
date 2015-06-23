@@ -3,7 +3,7 @@
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  *******************************************************************************/
-package com.minitech.boot.eneity;
+package com.minitech.boot.entity;
 
 import java.io.Serializable;
 import java.util.Date;
