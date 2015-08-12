@@ -3,6 +3,7 @@ package com.minitech.boot;
 import java.nio.charset.Charset;
 import java.util.Collections;
 
+import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
@@ -34,6 +35,9 @@ public class MyConfiguration extends WebMvcConfigurerAdapter {
 		HttpMessageConverter<?> another = new MappingJackson2HttpMessageConverter();
 		return new HttpMessageConverters(additional, another);
 	}
+	
+	@Autowired
+	private DataSource dataSource;
 
 	// 用于处理编码问题
 	/*
@@ -73,27 +77,23 @@ public class MyConfiguration extends WebMvcConfigurerAdapter {
 		registrationBean.setOrder(1);
 		return registrationBean;
 	}
-	
+
 	@Autowired
 	private LogNofityObserver logNofityObserver;
-	
-	
+
 	@Bean
-	public ZooMonitor getZooMonitor(){
+	public ZooMonitor getZooMonitor() {
 		ZooMonitor zooMonitor = new ZooMonitor();
 		return zooMonitor;
-		
+
 	}
-	
+
 	@Bean
 	public ZooL getZooL() {
-		ZooL zooL =new ZooL();
+		ZooL zooL = new ZooL();
 		zooL.setNofityObserver(logNofityObserver);
 		return zooL;
 	}
-	
-	
-	
 
 	/*
 	 * @Bean public FreeMarkerViewResolver freeMarkerViewResolver(){
